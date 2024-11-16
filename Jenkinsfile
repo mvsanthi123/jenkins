@@ -20,7 +20,7 @@ pipeline {
                     python3 -m venv ${VENV_DIR}
                     . ${VENV_DIR}/bin/activate
                     python3 -m pip install --upgrade pip
-                    //python3 -m pip install -r requirements
+                    python3 -m pip install -r requirements
                 '''
             }
         }
