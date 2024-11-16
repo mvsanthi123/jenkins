@@ -12,8 +12,8 @@ pipeline {
             steps {
                 echo 'Installing dependencies...'
                 sh '''
-                    sudo apt-get update
-                    sudo apt-get install -y python3.12-venv
+                    echo "your_password" | sudo -S apt-get update
+                    echo "your_password" | sudo -S apt-get install -y python3.12-venv
                     python3 -m venv venv
                     source venv/bin/activate
                     python3 -m pip install --upgrade pip
