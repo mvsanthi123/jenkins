@@ -12,34 +12,21 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 echo 'Installing dependencies...'
-                // Install virtualenv if not already installed
-                sh 'python3 -m pip install --upgrade pip'
-                sh 'python3 -m pip install virtualenv'
-                // Create and activate virtual environment
-                sh 'python3 -m venv venv'
-                sh '. venv/bin/activate && pip install -r requirements.txt'
+                // Install virtualenv and create a virtual environment
+                sh 'python3 -m pip install --user virtualenv' // Install virtualenv if necessary
+                sh 'python3 -m venv venv' // Create a virtual environment
+                // Activate virtual environment and install dependencies
+                sh '. venv/bin/activate && pip install --upgrade pip'
+                sh '. venv/bin/activate && pip install -r requirements.txt' 
             }
         }
 
         stage('Run Tests') {
             steps {
                 echo 'Running tests...'
-                // Activate virtualenv and run tests
+                // Run tests inside the virtual environment
                 sh '. venv/bin/activate && pytest test_app.py'
             }
-        }
-    }
-
-    post {
-        always {
-            echo 'Cleaning up workspace...'
-            cleanWs()
-        }
-        success {
-            echo 'Pipeline succeeded!'
-        }
-        failure {
-            echo 'Pipeline failed!'
         }
     }
 }
