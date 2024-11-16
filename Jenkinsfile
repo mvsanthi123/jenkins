@@ -28,7 +28,7 @@ pipeline {
                     steps {
                         echo 'Running tests...'
                         // Add your test commands here, for example:
-                        // sh 'pytest'
+                        sh 'pytest'
                     }
                 }
             }
