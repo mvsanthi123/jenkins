@@ -36,20 +36,12 @@ pipeline {
         }
         
         stage('Extract Data from app.py and Display Output') {
-            steps {
-                script {
-                    // Assuming 'app.py' contains some output-producing code
-                    def appContent = readFile('app.py')
-                    
-                    // For example, if app.py has a function `get_output()`, call it
-                    // If it's not a function, you could execute it or just process the content
-                    // Here's an example assuming `app.py` has a function `get_output()`
-                    
-                    def output = sh(script: 'python3 -c "from app import get_output; print(get_output())"', returnStdout: true).trim()
-                    
-                    echo "Output from app.py: ${output}"
-                }
-            }
+    steps {
+        script {
+            // This will now correctly import get_output from app.py and print it
+            sh 'python3 -c "from app import get_output; print(get_output())"'
         }
+    }
+}
     }
 }
