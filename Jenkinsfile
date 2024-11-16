@@ -25,16 +25,7 @@ pipeline {
             }
         }
 
-        /*stage('Run Tests') {
-            steps {
-                echo 'Running tests...'
-                sh '''
-                    . ${VENV_DIR}/bin/activate
-                    pytest
-                '''
-            }
-        }*/
-        
+     
         stage('Extract Data from app.py and Display Output') {
     steps {
         script {
