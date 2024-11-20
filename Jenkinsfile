@@ -31,7 +31,7 @@ pipeline {
         script {
             // This will now correctly import get_output from app.py and print it
             sh 'python3 -c "from app import get_output; print(get_output())"'
-        }
+        
     }
 }
     }
